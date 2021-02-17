@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
+    {{style('bootstrap')}}
+    {{style('bootstrap.min')}}
+    
+    <title>
+    </title>
+</head>
+<body>
+    <form method="post" action="/ami">
+    {{ csrfField() }}
+  <fieldset>
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Blog Title</label>
+      <div class="col-sm-10">
+        <input type="name" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleTextarea">Content</label>
+      <textarea class="form-control" name="blog_data" id="blog_data" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+    <div class="custom-control custom-switch">
+      <label for="customSwitch1" style="margin-right:30px;">Hideee  </label>
+      <input type="checkbox" class="custom-control-input" style="margin-left:15px;" name="val" id="customSwitch1" >
+      <label class="custom-control-label" for="customSwitch1" style="margin-left:15px;">Visible</label>
+    </div>
+  </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
+    <div class="container">
+    </div>
+    <script>
+        CKEDITOR.replace( 'blog_data' );
+    </script>
+</body>
+</html>

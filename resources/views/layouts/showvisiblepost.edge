@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {{style('bootstrap')}}
+    {{style('bootstrap.min')}}   
+    {{style('style')}}   
+    <title>
+    </title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<a href="/"><h2 style="margin-inline:auto;">Welcome To Blog</h2></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link btn btn-outline-success" href="/hide">Hide Post</a>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link btn btn-outline-success" href="/visible">Visible Posts</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    @each(post in abc)
+<div class="jumbotron">
+  <div class="btn-group dropleft float-right" style="margin-top:-5%;">
+    <div class="btn  test float-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </div>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="/edit/{{post.id}}">Edit</a>
+      <a class="dropdown-item" data-toggle="modal" data-target="#Modalv">Hide</a>
+      <a class="dropdown-item" data-toggle="modal" data-target="#Modald">Delete</a>
+      <a class="dropdown-item" href="/posts/{{post.id}}">View Post</a>
+    </div>
+<div class="modal fade" id="Modalv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{post.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You sure to change View Visible to hide
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="/hide/{{post.id}}"><button type="button" class="btn btn-success">Save changes</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="Modald" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{post.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a href="/del/{{post.id}}"<button type="button" class="btn btn-danger" >Confirm</button></a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+  <h3 class="display-5" style="margin-top:0">
+  @if(post.title===null)
+    Blog Title:No Title
+    @else
+    <h1 style="overflow-wrap:break-word;" value={{post.title}}>{{post.title}}</h1>
+    @endif
+  <p class="lead">
+  Blog Content:
+  </p>
+
+  @if(post.content===null)
+ <p class="lead">No Content In Blog</p>
+    @else
+    <div class="form-group">
+      <p style="overflow-wrap: break-word;" value={{{post.content.substring(1,200)}}}></textarea>
+    </div>
+  @endif
+  
+  <p class="lead">
+   @if(post.content.length>200)
+    <a class="btn btn-primary btn-lg" href="/posts/{{post.id}}" role="button">Read more</a>
+    <a class="btn btn-primary btn-lg" href="/posts/{{post.id}}" role="button">Open Post</a>
+   @else
+   <a class="btn btn-primary btn-lg" href="/posts/{{post.id}}" role="button">Open Post</a>
+ 
+    @endif
+    
+  </p>
+</div>
+@endeach
+
+    <div class="container">
+    </div>
+</body>
+</html>
